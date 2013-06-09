@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Like minded - Generate sample data</title>
+		<meta name="description" content="">
+		<meta name="author" content="" >
+		<meta charset="utf-8">
+	</head>
+	
+
+	<body id="glob">
+		<input type="button" value="Generate" onClick="generate(671143865, 671143966)">
+	</body>
+	<!-- JAVASCRIPTS -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script>
+	var interests = ["Microsoft Kinect","Chennai","Apps","Internet Startups","Security"];
+	function generate(from, to)
+	{
+		if(from < to)
+		{
+			var lng = -122 + Math.random()/20; 
+			var lat = 37.4 + Math.random()/20; 
+			var mod = from % 10;
+			var idx = mod<5?mod:mod-5;
+			jQuery.ajax({
+				url: "/likeminded", dataType : "json", type:"GET",
+				data: {id:from, longitude:lng, latitude:lat, interest:[interests[idx],interests[idx+1]], selected:interests[0]},
+				success: function(rslt){
+					console.dir(rslt);
+					generate(from+1, to)
+				},
+				error: function(e){
+					//curr.data = {error: "Could not load inbox items. Try reloading the page."};
+				}
+			});
+		}
+		else
+			return;
+	}
+	</script>
+</html>

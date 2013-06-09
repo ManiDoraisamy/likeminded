@@ -1,0 +1,58 @@
+<div id="wrapper">
+	<div id="sidebar">
+		<a class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</a>
+		<nav id="nav" class="navigation" role="navigation">
+			<ul class="unstyled">
+				<li data-section="1">
+					<a href="#section1" onClick="account.loadInterest(null)">
+						<i class="icon-home"></i> <span>Home</span>
+					</a>
+				</li>
+				
+				<% for(var i=0; i<data.topics.length; i++) {%>
+					<li data-section="<%=i+2%>" class="">
+						<a href="#section<%=i+2%>" onClick="account.loadInterest('<%=data.topics[i].value%>')">
+							<i class="icon-user"></i> <span><%=data.topics[i].value%></span>
+						</a>
+					</li>
+				<% } %>
+				<li data-section="1">
+					<a href="#section1" onClick="account.makeCall('+1 650 353 2377')">
+						<i class="icon-home"></i> <span>Call</span>
+					</a>
+				</li>
+			</ul>
+		</nav><!-- /nav -->
+	</div><!-- /sidebar -->
+	
+	<div id="container">
+								
+		<section class="section" id="section1" data-section="1" 
+			style="background-image: url(<%=data.facebook.cover%>); padding-top:60px">
+			<div class="container-fluid">	
+				<div class="row-fluid">
+					
+					<div class="alt-image img-circle thumb">
+						<img src="http://graph.facebook.com/<%=fbId%>/picture?type=large" alt="Like Minded" class="img-circle">
+					</div>
+					<div class="span6 intro">
+						<hgroup>
+							<h1><%=data.facebook.name%></h1>
+							<h3><%=data.facebook.bio%></h3>
+						</hgroup>
+						<br/>
+						<fb:login-button scope="email,read_stream" size="xlarge"></fb:login-button>
+						<div id="me"></div>
+					</div><!-- /span6 -->
+					
+				</div><!-- /row-fluid -->
+			</div><!-- /container-fluid -->	
+		</section><!-- /section -->
+				
+				
+	</div><!-- /container -->	
+</div><!-- /wrapper -->
